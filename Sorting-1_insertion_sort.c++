@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 int main(){
-    cout<<"please tell the numbers you want to sort through the bubble sort :----->";
+    cout<<"please tell the numbers you want to sort through the insertion sort :----->";
     int num = 0;
     cin>>num;
     int arr[100];
@@ -10,19 +10,27 @@ int main(){
         cin>>arr[i];
     }
     int flag=0 , j=0;
+
+
     for(int i=0 ; i<num-1 ;i++){
         int temp = arr[i+1];
-        bool shifting = false;
+        bool swapping = false;
         for( j=i ; j>-1 ;j--){
             if(arr[j]>temp){
                 arr[j+1]=arr[j];
-                shifting = true;
+                flag++;
+                swapping = true;
+            }
+            else{
+                break;
             }
         }
-        if(shifting == true){
-            arr[j] = temp;
+        if(swapping == true){
+            arr[j+1] = temp;
         }
     }
+
+
     cout<<"printing the sorted list of the numbers :------>"<<endl;
     for(int s=0 ; s<num ;s++){
         cout<<arr[s]<<" ";
