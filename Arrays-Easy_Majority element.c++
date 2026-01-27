@@ -4,28 +4,47 @@ using namespace std;
 
 class Solution {
 public:
-    int majorityElement(vector<int>& nums) {
+
+    // problem in my approach is that it cannot give correct answer in few test cases so doing boyer moore voting algorithm 
+    // int majorityElement(vector<int>& nums) {
+    //     int size = nums.size();
+    //     int temp = 0 , counter = 0;
+    //     int stop = size / 2;
+    //     for(int i=0 ; i<size ; i++){
+    //         if(temp == nums[i]){
+    //             continue;
+    //         }
+    //         else{
+    //             temp = nums[i];
+    //             counter = 0;
+    //             for(int j=1 ; j<size ; j++){
+    //                 if(nums[j] == temp){
+    //                     counter++;
+    //                     if(counter == stop){
+    //                         return nums[j];
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return 0;
+    // }
+    int majorityElement(vector<int>& nums){
         int size = nums.size();
-        int temp = 0 , counter = 0;
-        int stop = size / 2;
-        for(int i=0 ; i<size ; i++){
-            if(temp == nums[i]){
-                continue;
+        int majority = nums[0];
+        int counter = 0;
+        for(int i = 0 ; i<size ;i++){
+            if(nums[i] == majority){
+                counter++;
             }
-            else{
-                temp = nums[i];
-                counter = 0;
-                for(int j=1 ; j<size ; j++){
-                    if(nums[j] == temp){
-                        counter++;
-                        if(counter == stop){
-                            return nums[j];
-                        }
-                    }
+            if(nums[i] != majority){
+                counter--;
+                if(counter == 0){
+                    majority = nums[i+1];
                 }
             }
         }
-        return 0;
+        return majority;
     }
 };
 
